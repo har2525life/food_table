@@ -8,13 +8,14 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { googleLogin } from '../firebase/firebaseAuth';
 
 
 const Authorizations = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
 
     }
 
@@ -35,8 +36,9 @@ const Authorizations = () => {
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
-                <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                <Box onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                     <TextField
+                        type='email'
                         margin="normal"
                         required
                         fullWidth
@@ -45,6 +47,8 @@ const Authorizations = () => {
                         name="email"
                         autoComplete="email"
                         autoFocus
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                     <TextField
                         margin="normal"
@@ -55,6 +59,8 @@ const Authorizations = () => {
                         type="password"
                         id="password"
                         autoComplete="current-password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                     <Button
                         type="submit"
@@ -65,10 +71,11 @@ const Authorizations = () => {
                         Sign In
                     </Button>
                     <Button
-                        type="submit"
+                        type="btn"
                         fullWidth
                         variant="contained"
                         sx={{ mt: 2, mb: 2 }}
+                        onClick={googleLogin}
                     >
                         Google Login
                     </Button>
